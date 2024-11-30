@@ -1,0 +1,47 @@
+.area {
+	border: 3px solid rgb(123, 123, 123);
+	border-radius: 10px;
+	min-height: 95px;
+	margin: 20px;
+	width: 90%;
+	margin-bottom: 0;
+	display: flex;
+	textarea {
+		width: 100%;
+		background: none;
+		border: none;
+		padding: 10px;
+		resize: none;
+		font-size: 16pt;
+		overflow: hidden;
+		&:focus {
+			outline: none;
+		}
+	}
+	.widgets {
+		float: right;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		img {
+			width: 25px;
+			height: 25px;
+			margin: 10px;
+			border: none;
+			background: none;
+			transition: all 0.5s ease-out;
+			&:hover {
+				transform: scale(1.1, 1.1);
+			}
+		}
+		input[type='checkbox'] {
+			width: 18px;
+			height: 18px;
+			margin: 10px;
+		}
+		input[type='checkbox']:checked {
+			accent-color: #4caf50;
+		}
+	}
+}

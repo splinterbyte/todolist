@@ -1,0 +1,16 @@
+.btn {
+	border: 3px solid rgb(255, 255, 255);
+	border-style: dashed;
+	border-radius: 10px;
+	min-height: 95px;
+	margin: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 90%;
+
+	span {
+		font-weight: 700;
+		font-size: 24pt;
+	}
+}
