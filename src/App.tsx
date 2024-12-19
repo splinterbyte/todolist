@@ -1,21 +1,70 @@
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import axios from 'axios'
 import './App.scss'
 import { Border } from './components/Border'
-import { useBorderStore } from './store/store-border'
+
+interface Task {
+	id: number
+	text: string
+}
+
+interface IBorder {
+	id: number
+	tasks: Task[]
+}
+const fetchBorders = async (): Promise<IBorder[]> => {
+	const response = await axios.get(`http://localhost:8000/borders`)
+	return response.data
+}
+
+const createBorder = async (
+	newBorder: Omit<IBorder, 'id' | 'tasks'>
+): Promise<IBorder> => {
+	const response = await axios.post(`http://localhost:8000/borders`, newBorder)
+	return response.data
+}
 
 function App() {
-	const { borders, addBorder } = useBorderStore()
+	const queryClient = useQueryClient()
+
+	const { data: gettedBorders } = useQuery<IBorder[]>({
+		queryKey: ['borders'],
+		queryFn: fetchBorders,
+	})
+
+	const mutation = useMutation({
+		mutationFn: createBorder,
+
+		onSuccess: () => {
+			console.log('Border created successfully')
+			queryClient.invalidateQueries({ queryKey: ['borders'] })
+		},
+
+		onError: error => {
+			console.error('Error creating todo:', error)
+		},
+	})
+
+	const handleCreate = () => {
+		const newBorder: Omit<IBorder, 'id' | 'tasks'> = {}
+		mutation.mutate(newBorder)
+	}
 
 	return (
 		<>
 			<div className='wrapper'>
-				{borders.map(border => (
-					<Border key={border.id_border} borderId={border.id_border} />
+				{gettedBorders?.map((border: IBorder) => (
+					<Border key={border.id} borderId={border.id} tasks={border.tasks} />
 				))}
 				<button
-					className={borders.length < 4 ? 'addList' : 'addList disabled'}
-					onClick={addBorder}
+					className={
+						gettedBorders && gettedBorders.length < 4
+							? 'addList'
+							: 'addList disabled'
+					}
+					onClick={handleCreate}
 				>
-					<span>+</span>
+					+
 				</button>
 			</div>
 		</>

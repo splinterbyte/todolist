@@ -24,16 +24,12 @@
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
-		img {
+		button {
 			width: 25px;
 			height: 25px;
 			margin: 10px;
-			border: none;
-			background: none;
-			transition: all 0.5s ease-out;
-			&:hover {
-				transform: scale(1.1, 1.1);
-			}
+			display: flex;
+			justify-content: center;
 		}
 		input[type='checkbox'] {
 			width: 18px;
