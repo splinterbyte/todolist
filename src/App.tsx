@@ -12,6 +12,7 @@ interface IBorder {
 	id: number
 	tasks: Task[]
 }
+
 const fetchBorders = async (): Promise<IBorder[]> => {
 	const response = await axios.get(`http://localhost:8000/borders`)
 	return response.data
