@@ -1,0 +1,6 @@
+export { createBorder } from './create-border'
+export { createTask } from './create-task'
+export { deleteBorder } from './delete-border'
+export { deleteTask } from './delete-task'
+export { getBorders } from './get-borders'
+export { updateTask } from './update-task'

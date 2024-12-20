@@ -1,7 +1,7 @@
+import { api } from '@/shared'
 import { useMutation } from '@tanstack/react-query'
-import { taskApi } from '../../../entities/task'
 
 export const useCreateTask = () =>
 	useMutation({
-		mutationFn: taskApi.createTask,
+		mutationFn: api.createTask,
 	})

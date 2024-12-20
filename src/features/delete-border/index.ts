@@ -1,0 +1,1 @@
+export { DeleteBorder } from './ui'

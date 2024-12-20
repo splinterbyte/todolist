@@ -1,7 +1,7 @@
 import { api } from '@/shared'
 import { useMutation } from '@tanstack/react-query'
 
-export const useDeleteTask = () =>
+export const useDeleteBorder = () =>
 	useMutation({
-		mutationFn: api.deleteTask,
+		mutationFn: api.deleteBorder,
 	})
